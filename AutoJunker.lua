@@ -2,9 +2,20 @@ AutoJunker = {}
 AutoJunker.name = "AutoJunker"
 
 local function init()
-    EVENT_MANAGER:RegisterForEvent(AutoJunker.name, EVENT_INVENTORY_SINGLE_SLOT_UPDATE, AutoJunker.OnInventoryChanged)
-    EVENT_MANAGER:AddFilterForEvent(AutoJunker.name, EVENT_INVENTORY_SINGLE_SLOT_UPDATE, REGISTER_FILTER_BAG_ID, BAG_BACKPACK)
-    EVENT_MANAGER:AddFilterForEvent(AutoJunker.name, EVENT_INVENTORY_SINGLE_SLOT_UPDATE, REGISTER_FILTER_INVENTORY_UPDATE_REASON, INVENTORY_UPDATE_REASON_DEFAULT)
+    EVENT_MANAGER:RegisterForEvent(
+        AutoJunker.name,
+        EVENT_INVENTORY_SINGLE_SLOT_UPDATE,
+        AutoJunker.OnInventoryChanged)
+    EVENT_MANAGER:AddFilterForEvent(
+        AutoJunker.name,
+        EVENT_INVENTORY_SINGLE_SLOT_UPDATE,
+        REGISTER_FILTER_BAG_ID,
+        BAG_BACKPACK)
+    EVENT_MANAGER:AddFilterForEvent(
+        AutoJunker.name,
+        EVENT_INVENTORY_SINGLE_SLOT_UPDATE,
+        REGISTER_FILTER_INVENTORY_UPDATE_REASON,
+        INVENTORY_UPDATE_REASON_DEFAULT)
 end
 
 local function isJunk(bagId, slotIdx)
@@ -27,7 +38,14 @@ function AutoJunker.OnAddOnLoaded(event, addon)
     init()
 end
 
-function AutoJunker.OnInventoryChanged(event, bagId, slotIdx, isNew, soundCategory, updateReason, stackCount)
+function AutoJunker.OnInventoryChanged(
+        event,
+        bagId,
+        slotIdx,
+        isNew,
+        soundCategory,
+        updateReason,
+        stackCount)
     if stackCount > 0 and isJunk(bagId, slotIdx) then
         notifyJunk(bagId, slotIdx)
         SetItemIsJunk(bagId, slotIdx, true)
