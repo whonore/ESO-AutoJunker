@@ -33,11 +33,6 @@ local function notifyJunk(bagId, slotIdx)
     d("Marking " .. GetItemLink(bagId, slotIdx) .. " as junk.")
 end
 
-function AutoJunker.OnAddOnLoaded(event, addon)
-    if addon ~= AutoJunker.name then return end
-    init()
-end
-
 function AutoJunker.OnInventoryChanged(
         event,
         bagId,
@@ -52,4 +47,11 @@ function AutoJunker.OnInventoryChanged(
     end
 end
 
-EVENT_MANAGER:RegisterForEvent(AutoJunker.name, EVENT_ADD_ON_LOADED, AutoJunker.OnAddOnLoaded)
+EVENT_MANAGER:RegisterForEvent(
+    AutoJunker.name,
+    EVENT_ADD_ON_LOADED,
+    function(event, addon)
+        if addon ~= AutoJunker.name then return end
+        EVENT_MANAGER:UnregisterForEvent(AutoJunker.name, EVENT_ADD_ON_LOADED)
+        init()
+    end)
