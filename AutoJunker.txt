@@ -1,7 +1,7 @@
 ## Title: AutoJunker
 ## Author: Wolf Honore
 ## Description: Automatically marks items as junk.
-## APIVersion: 100035
+## APIVersion: 101034
 ## AddOnVersion: 001
 ## Version: 0.0.1
 ## IsLibrary: false
