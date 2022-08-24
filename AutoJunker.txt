@@ -6,8 +6,8 @@
 ## Author: Wolf Honore
 ## Description: Automatically marks items as junk.
 ## APIVersion: 101035
-## AddOnVersion: 2
-## Version: 0.1.1
+## AddOnVersion: 3
+## Version: 0.1.2
 ## IsLibrary: false
 
 AutoJunker.lua
